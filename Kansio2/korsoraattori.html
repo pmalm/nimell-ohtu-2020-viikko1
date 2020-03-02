@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Korsoraattori</title>
+<!-- 
+Korsoraattori on ohjelma, joka lukee sille annetun tekstin ja lisää siihen satunnaisesti lisäsanan v'ttu, 
+niinku, totanoin tai tiätsä ja näyttää korsoroidun tekstin näytölle. 
+ -->
+</head>
+<body>
+	<h3>Korsoraattori</h3>
+	<form>
+		<label>Teksti:</label><br>
+		<textarea id="teksti" rows="4" cols="40"></textarea><br>
+		<input type="button" value="Korsoroi" onclick="korsoroi()">
+	</form>
+	
+	<div id="vastaus"></div>
+
+	<script type="text/javascript">
+		function korsoroi() {
+			var lisaSanat = [ "v'ttu", "niinku", "totanoin", "tiätsä" ];
+			var teksti = document.getElementById("teksti").value;
+			var sanat = teksti.split(" "); //Jaetaan teksti taulukkoon, jokainen sana omaan alkioonsa
+			teksti = sanat[0]; //Aloitetaan uusi teksti taulukon 1. alkion arvolla
+			
+			for (var i = 1; i < sanat.length; i++) { //Käydään loput taulukon alkiot läpi
+				//Arvotaan lisätäänkö väliin lisäsana (50%)
+				if (Math.floor(Math.random() * 2) == 1) {
+					//Arvotaan lisättävä lisäsana
+					teksti = teksti + " " +
+							lisaSanat[Math.floor(Math.random() * lisaSanat.length)];
+				}
+				teksti =  teksti + " " + sanat[i]; 
+			}
+			// Vastauksen kirjoittaminen html-sivulle
+			document.getElementById("vastaus").innerHTML = "<p>Sama Korsoksi:<br>" + teksti + "</p>";
+		}
+	</script>
+</body>
+</html>

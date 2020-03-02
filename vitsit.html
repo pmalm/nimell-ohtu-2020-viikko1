@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Päivän vitsi</title>
+<!-- 
+Tee ohjelma, mikä näyttää vitsit taulukosta. 
+ -->
+</head> 
+<body>
+	<h3>Päivän vitsi</h3>
+
+	<script type="text/javascript" src="https://myy.haaga-helia.fi/~swd1ta001/koodit/vitsit.js"></script>
+
+	<div id="vitsi"></div>
+
+	<script type="text/javascript">
+	
+		// Globaalit muuttujat, joiden arvo säilyy koko sivun suorituksen ajan
+		// Jos esitellään funktioon, arvot katoavat funktion lopussa eli tiedot eivät säily
+		var vanhapaikka = 0, paikka = 0;
+		
+		// Funktio vaihtaa vitsiä
+		function vaihdaVitsi() {
+			// Edellisen vitsin paikka taulukossa
+			vanhapaikka = paikka;
+			
+			// Toistetan niin kauan kuin uuden vitsin paikka on eri kuin viimeisimmän vitsin paikka taulukossa
+			while (vanhapaikka == paikka) {
+				paikka = Math.floor((Math.random() * vitsit.length));
+			}
+
+			// Vitsin kirjoittaminen HTML-sivulle
+			document.getElementById("vitsi").innerHTML = "<p> " + vitsit[paikka] + "</p>";
+		}
+		// Asetetaan ensimmäinen vitsi
+		vaihdaVitsi();
+		
+		// Vaihdetaan vitsiä 9 sekunnin välein
+		setInterval(vaihdaVitsi, 9000);
+	</script>
+
+</body>
+</html>
